@@ -31,9 +31,10 @@
     enablerepo: mysql57-community
   when: ansible_facts['os_family'] == "RedHat"
 
-- name: install PyMySQL from pip (RedHat os family)
-  pip:
-    name: PyMySQL # for mysql_db and mysql_user modules
+- name: ajouter la dependence Python-MySQL
+    yum:
+      name: MySQL-python
+      state: present
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: ensure mysql service is start (Debian os family)
